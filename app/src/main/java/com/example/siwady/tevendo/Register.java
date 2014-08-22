@@ -47,9 +47,9 @@ public class Register extends Activity {
                     register.put("Email",Email.getText().toString());
                     register.put("Password",Password.getText().toString());
                     register.saveInBackground();
-                    Intent to_login = new Intent("android.intent.action.MAIN");
+                    Intent to_home = new Intent(Register.this,Home.class);
                     finish();
-                    startActivity(to_login);
+                    startActivity(to_home);
                 }
             }
         });
