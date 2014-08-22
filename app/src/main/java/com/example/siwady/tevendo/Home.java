@@ -1,17 +1,25 @@
 package com.example.siwady.tevendo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.TextView;
 
 
 public class Home extends Activity {
+
+    ListView Items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        Intent i = getIntent();
+        String Email = i.getStringExtra ("Email");
+        Items=(ListView)findViewById(R.id.lv_Items);
     }
 
 

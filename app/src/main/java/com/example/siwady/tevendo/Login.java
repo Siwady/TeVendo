@@ -2,6 +2,7 @@ package com.example.siwady.tevendo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -29,6 +30,7 @@ public class Login extends Activity {
     Button bt_Login;
     Button bt_Register;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +53,8 @@ public class Login extends Activity {
 
                         if (parseObject == null) {
                             Toast.makeText(Login.this,"Login succesful", Toast.LENGTH_LONG).show();
-                            Intent to_login = new Intent("android.intent.action.HOME");
+                            Intent to_login = new Intent(Login.this,Home.class);
+                            to_login.putExtra("Email",Email.getText().toString());
                             finish();
                             startActivity(to_login);
                         } else {
