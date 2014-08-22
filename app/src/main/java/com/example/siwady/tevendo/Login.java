@@ -53,7 +53,7 @@ public class Login extends Activity {
 
                         if (parseObject == null) {
                             Toast.makeText(Login.this,"Login succesful", Toast.LENGTH_LONG).show();
-                            Intent to_login = new Intent(Login.this,Home.class);
+                            Intent to_login = new Intent(Login.this,UserPage.class);
                             to_login.putExtra("Email",Email.getText().toString());
                             finish();
                             startActivity(to_login);
