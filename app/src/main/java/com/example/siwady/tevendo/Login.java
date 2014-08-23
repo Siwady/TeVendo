@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -28,8 +30,62 @@ public class Login extends Activity {
     EditText Email;
     EditText Password;
     Button bt_Login;
-    Button bt_Register;
 
+    TextView tv_Register;
+
+
+    float x1,x2,y1,y2;
+
+    public boolean onTouchEvent(MotionEvent TouchEvent)
+    {
+        switch (TouchEvent.getAction())
+        {
+
+            case MotionEvent.ACTION_DOWN:
+            {
+                x1 = TouchEvent.getX();
+                y1 = TouchEvent.getY();
+                break;
+            }
+            case MotionEvent.ACTION_UP:
+            {
+                x2 = TouchEvent.getX();
+                y2 = TouchEvent.getY();
+
+
+                if (x1 < x2)
+                {
+                    //izquierda a derecha
+
+
+
+                }
+
+
+                if (x1 > x2)
+                {
+                    //derecha a izquierda
+                    Intent to_register= new Intent(Login.this,Register.class);
+                    finish();
+                    startActivity(to_register);
+                }
+
+
+                if (y1 < y2)
+                {
+                    //arriba a abajo
+                }
+
+
+                if (y1 > y2)
+                {
+                    //abajo a arriba
+                }
+                break;
+            }
+        }
+        return false;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +95,7 @@ public class Login extends Activity {
         Email = (EditText) findViewById(R.id.et_Email);
         Password = (EditText) findViewById(R.id.et_Password);
         bt_Login = (Button) findViewById(R.id.btLogin);
-        bt_Register=(Button) findViewById(R.id.bt_Register);
+        tv_Register= (TextView) findViewById(R.id.tv_Register);
 
         bt_Login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +121,7 @@ public class Login extends Activity {
             }
         });
 
-        bt_Register.setOnClickListener(new View.OnClickListener() {
+        tv_Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent register = new Intent("com.example.siwady.tevendo.REGISTER");

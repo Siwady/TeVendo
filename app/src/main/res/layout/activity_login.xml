@@ -22,7 +22,9 @@
         android:layout_marginTop="135dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:gravity="center"
+        android:hint="E-Mail" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -32,24 +34,27 @@
         android:id="@+id/et_Password"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/et_Email" />
+        android:layout_alignEnd="@+id/et_Email"
+        android:gravity="center"
+        android:hint="Password" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/btLogin"
-        android:layout_marginTop="43dp"
-        android:layout_marginLeft="48dp"
-        android:layout_below="@+id/et_Password"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/tv_Register"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp" />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Register"
-        android:id="@+id/bt_Register"
-        android:layout_alignTop="@+id/btLogin"
-        android:layout_alignEnd="@+id/et_Password"
-        android:layout_marginRight="48dp" />
+        android:id="@+id/tv_Register"
+        android:layout_below="@+id/et_Password"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="18dp" />
 </RelativeLayout>

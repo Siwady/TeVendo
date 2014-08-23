@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +28,58 @@ public class Register extends Activity {
     EditText Password;
     Button bt_Register;
     Boolean exist=false;
+    float x1,x2,y1,y2;
+
+    public boolean onTouchEvent(MotionEvent TouchEvent)
+    {
+        switch (TouchEvent.getAction())
+        {
+
+            case MotionEvent.ACTION_DOWN:
+            {
+                x1 = TouchEvent.getX();
+                y1 = TouchEvent.getY();
+                break;
+            }
+            case MotionEvent.ACTION_UP:
+            {
+                x2 = TouchEvent.getX();
+                y2 = TouchEvent.getY();
+
+
+                if (x1 < x2)
+                {
+                    //izquierda a derecha
+                    Intent to_login= new Intent(Register.this,Login.class);
+                    finish();
+                    startActivity(to_login);
+                }
+
+
+                if (x1 > x2)
+                {
+                    //derecha a derecha
+
+                }
+
+
+                if (y1 < y2)
+                {
+                    //arriba a abajo
+                }
+
+
+                if (y1 > y2)
+                {
+                    //abajo a arriba
+                }
+                break;
+            }
+        }
+        return false;
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
