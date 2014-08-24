@@ -6,25 +6,15 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.example.siwady.tevendo.Login">
+    tools:context="com.example.siwady.tevendo.Login"
+    android:background="@android:drawable/button_onoff_indicator_off"><![CDATA[
 
     TextView
         android:text="@string/hello_world"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/et_Email"
-        android:layout_marginTop="135dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentStart="true"
-        android:gravity="center"
-        android:hint="E-Mail" />
+    ]]>
 
     <EditText
         android:layout_width="wrap_content"
@@ -32,29 +22,54 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/et_Password"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/et_Email"
         android:gravity="center"
-        android:hint="Password" />
+        android:hint="Password"
+        android:background="@android:drawable/alert_light_frame"
+        android:layout_below="@+id/et_Email"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/et_Email" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/btLogin"
-        android:layout_below="@+id/tv_Register"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp" />
+        android:layout_below="@+id/et_Password"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="44dp"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Register"
+        android:text="  Register"
         android:id="@+id/tv_Register"
-        android:layout_below="@+id/et_Password"
-        android:layout_alignParentStart="true"
         android:textColor="@android:color/holo_blue_dark"
-        android:textSize="18dp" />
+        android:textSize="18dp"
+        android:layout_below="@+id/et_Password"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="294dp"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/et_Email"
+        android:hint="E-Mail"
+        android:background="@android:drawable/alert_light_frame"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:id="@+id/imageView"
+        android:layout_above="@+id/et_Email"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="38dp"
+        android:background="@drawable/ic_launcher" />
+
 </RelativeLayout>
