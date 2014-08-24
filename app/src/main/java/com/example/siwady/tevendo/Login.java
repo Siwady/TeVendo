@@ -3,6 +3,8 @@ package com.example.siwady.tevendo;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -96,7 +98,6 @@ public class Login extends Activity {
         Password = (EditText) findViewById(R.id.et_Password);
         bt_Login = (Button) findViewById(R.id.btLogin);
         tv_Register= (TextView) findViewById(R.id.tv_Register);
-
         bt_Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
