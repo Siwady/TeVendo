@@ -13,42 +13,31 @@
         <activity
             android:name=".Home"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Login"
-            android:label="@string/app_name" >
+            android:label="Te Vendo" >
             <intent-filter>
-                <action android:name="com.example.siwady.tevendo.LOGIN" />
+                <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Register"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="com.example.siwady.tevendo.REGISTER" />
+            android:label="Register" >
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".UserPage"
             android:label="@string/title_activity_user_page" >
-            <intent-filter>
-                <action android:name="com.example.siwady.tevendo.UserPage" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".MyArticles"
-            android:label="@string/title_activity_my_articles" >
+            android:label="MyArticles" >
+
         </activity>
     </application>
 

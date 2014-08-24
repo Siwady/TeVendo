@@ -3,6 +3,8 @@ package com.example.siwady.tevendo;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -96,25 +98,25 @@ public class Login extends Activity {
         Password = (EditText) findViewById(R.id.et_Password);
         bt_Login = (Button) findViewById(R.id.btLogin);
         tv_Register= (TextView) findViewById(R.id.tv_Register);
-
         bt_Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ParseQuery<ParseObject> query = ParseQuery.getQuery("Register");
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
                 query.whereEqualTo("Email", Email.getText().toString());
-                query.whereGreaterThan("Password",Password.getText().toString());
+                query.whereEqualTo("Password",Password.getText().toString());
                 query.getFirstInBackground(new GetCallback<ParseObject>() {
                     @Override
                     public void done(ParseObject parseObject, com.parse.ParseException e) {
 
                         if (parseObject == null) {
+                            Toast.makeText(Login.this,"Login fail", Toast.LENGTH_LONG).show();
+
+                        } else {
                             Toast.makeText(Login.this,"Login succesful", Toast.LENGTH_LONG).show();
                             Intent to_login = new Intent(Login.this,UserPage.class);
                             to_login.putExtra("Email",Email.getText().toString());
                             finish();
                             startActivity(to_login);
-                        } else {
-                            Toast.makeText(Login.this,"Login fail", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -124,7 +126,7 @@ public class Login extends Activity {
         tv_Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent register = new Intent("com.example.siwady.tevendo.REGISTER");
+                Intent register = new Intent(Login.this,Register.class);
                 startActivity(register);
             }
         });
