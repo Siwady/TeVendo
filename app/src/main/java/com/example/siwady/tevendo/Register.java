@@ -84,7 +84,6 @@ public class Register extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        Parse.initialize(this, "vblw3rKI00FJvasKaloXxgyb2SPj016V5baVNpJz", "e5IDoupZ3KAszADguskQsVwnP3iwXKMdAaC8i1DX");
         UserName=(EditText) findViewById(R.id.et_UserName);
         Email = (EditText) findViewById(R.id.et_Email);
         Password = (EditText) findViewById(R.id.et_Password);
@@ -95,7 +94,7 @@ public class Register extends Activity {
             public void onClick(View v) {
                 if(VerifyEmail() && VerifyEmailExist())
                 {
-                    ParseObject register = new ParseObject("Register");
+                    ParseObject register = new ParseObject("User");
                     register.put("UserName", UserName.getText().toString());
                     register.put("Email",Email.getText().toString());
                     register.put("Password",Password.getText().toString());
@@ -109,15 +108,15 @@ public class Register extends Activity {
     }
 
     private boolean VerifyEmailExist() {
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Register");
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
         query.whereEqualTo("Email", Email.getText().toString());
         query.getFirstInBackground(new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject parseObject, com.parse.ParseException e) {
 
                 if (parseObject == null) {
-                    Toast.makeText(Register.this,"Si se puede registrar", Toast.LENGTH_LONG).show();
-                    exist=true;
+                    Toast.makeText(Register.this,"Si se puede registrar"+Email.getText().toString(), Toast.LENGTH_LONG).show();
+                    //exist=true;
                 } else {
                     Toast.makeText(Register.this,"No se puede registrar", Toast.LENGTH_LONG).show();
                     exist=false;
