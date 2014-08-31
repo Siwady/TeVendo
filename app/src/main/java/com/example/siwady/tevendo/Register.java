@@ -2,7 +2,14 @@ package com.example.siwady.tevendo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -10,25 +17,31 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.siwady.tevendo.R;
 import com.parse.GetCallback;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
 
+import java.io.ByteArrayOutputStream;
 import java.text.ParseException;
 
 public class Register extends Activity {
 
+    private static final int SELECT_PICTURE = 1;
     EditText UserName;
     EditText Email;
     EditText Password;
     Button bt_Register;
     Boolean exist=false;
+    ImageView UserImage;
     float x1,x2,y1,y2;
+    private String selectedImagePath;
 
     public boolean onTouchEvent(MotionEvent TouchEvent)
     {
@@ -88,23 +101,59 @@ public class Register extends Activity {
         Email = (EditText) findViewById(R.id.et_Email);
         Password = (EditText) findViewById(R.id.et_Password);
         bt_Register = (Button) findViewById(R.id.bt_Register);
+        UserImage=(ImageView) findViewById(R.id.iv_UserImage);
+        UserImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent();
+                i.setType("image/*");
+                i.setAction(Intent.ACTION_GET_CONTENT);
+
+                startActivityForResult(Intent.createChooser(i,"Select Picture"), SELECT_PICTURE);
+            }
+        });
 
         bt_Register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(VerifyEmail() && VerifyEmailExist())
                 {
+                    Bitmap image = ((BitmapDrawable)UserImage.getDrawable()).getBitmap();
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    image.compress(Bitmap.CompressFormat.JPEG, 100, stream);
+                    byte[] data = stream.toByteArray();
+                    ParseFile imgFile = new ParseFile ("ProfileImage.png", data);
                     ParseObject register = new ParseObject("User");
                     register.put("UserName", UserName.getText().toString());
                     register.put("Email",Email.getText().toString());
                     register.put("Password",Password.getText().toString());
+                    register.put("UserProfileImage",imgFile);
                     register.saveInBackground();
-                    Intent to_home = new Intent(Register.this,Home.class);
+                    Intent to_home = new Intent(Register.this,Login.class);
                     finish();
                     startActivity(to_home);
                 }
             }
         });
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == SELECT_PICTURE) {
+                Uri selectedImageUri = data.getData();
+                selectedImagePath = getPath(selectedImageUri);
+                System.out.println("Image Path : " + selectedImagePath);
+                UserImage.setImageURI(selectedImageUri);
+            }
+        }
+    }
+
+    private String getPath(Uri uri) {
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
     }
 
     private boolean VerifyEmailExist() {
@@ -115,8 +164,8 @@ public class Register extends Activity {
             public void done(ParseObject parseObject, com.parse.ParseException e) {
 
                 if (parseObject == null) {
-                    Toast.makeText(Register.this,"Si se puede registrar"+Email.getText().toString(), Toast.LENGTH_LONG).show();
-                    //exist=true;
+                    Toast.makeText(Register.this,"Si se puede registrar", Toast.LENGTH_LONG).show();
+                    exist=true;
                 } else {
                     Toast.makeText(Register.this,"No se puede registrar", Toast.LENGTH_LONG).show();
                     exist=false;
