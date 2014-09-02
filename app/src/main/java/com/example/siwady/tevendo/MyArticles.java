@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.siwady.tevendo.R;
@@ -19,7 +21,7 @@ public class MyArticles extends Activity {
 
     ListView Items;
     String Email;
-
+    Button bt_AddArticle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +30,18 @@ public class MyArticles extends Activity {
         Intent i = getIntent();
         Email = i.getStringExtra ("Email");
         GetItems();
+
+        bt_AddArticle= (Button) findViewById(R.id.bt_AddArticle);
+        bt_AddArticle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent to_AddArticle = new Intent(MyArticles.this,AddArticle.class);
+                to_AddArticle.putExtra("Email",Email);
+                finish();
+                startActivity(to_AddArticle);
+            }
+        });
+
     }
 
     private void GetItems() {

@@ -34,10 +34,9 @@
         android:layout_height="wrap_content"
         android:text="Login"
         android:id="@+id/btLogin"
-        android:layout_below="@+id/et_Password"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="44dp"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/tv_Register" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -67,9 +66,8 @@
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:id="@+id/imageView"
-        android:layout_above="@+id/et_Email"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="38dp"
-        android:background="@drawable/ic_launcher" />
+        android:background="@drawable/ic_launcher"
+        android:layout_above="@+id/et_Email" />
 
 </RelativeLayout>
